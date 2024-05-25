@@ -1,0 +1,23 @@
+CREATE TABLE User (
+    full_name VARCHAR(255),
+    email VARCHAR(255) PRIMARY KEY,
+    password VARCHAR(255)
+);
+
+CREATE TABLE Accounts (
+    account_number BIGINT PRIMARY KEY,
+    full_name VARCHAR(255),
+    email VARCHAR(255),
+    balance DOUBLE,
+    security_pin VARCHAR(255),
+    FOREIGN KEY (email) REFERENCES User(email)
+);
+
+CREATE TABLE Transactions (
+    transaction_id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    account_number BIGINT,
+    type VARCHAR(255),
+    amount DOUBLE,
+    date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (account_number) REFERENCES Accounts(account_number)
+);
